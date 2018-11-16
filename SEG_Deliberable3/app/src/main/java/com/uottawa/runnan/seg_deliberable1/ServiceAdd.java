@@ -65,12 +65,14 @@ public class ServiceAdd extends AppCompatActivity {
         HourlyRate = (EditText)findViewById(R.id.hourly_rate);
 
         list = new ArrayList<>();
-        adapter = new ArrayAdapter<Service>(this, android.R.layout.simple_expandable_list_item_1, list);
+        adapter = new ArrayAdapter<Service>(this, android.R.layout.simple_list_item_1, list);
+        final ServiceListAdapter serviceAdapter = new ServiceListAdapter(this, R.layout.service_adapter_layout, list);
 
         ServiceListView.setAdapter(adapter);
         services.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int count=0;
                 for(DataSnapshot data: dataSnapshot.getChildren()){
                     String serviceName = data.child("nameOfService").getValue().toString();
                     double serviceRate = Double.parseDouble(data.child("hourlyRate").getValue().toString());

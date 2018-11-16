@@ -39,9 +39,18 @@ public class Home extends AppCompatActivity {
                     Intent passdata = new Intent(getApplicationContext(),ServiceAdd.class);
                     passdata.putExtra("username", getIntent().getStringExtra("username"));
                     startActivity(passdata);
+
+                }else if(getIntent().getStringExtra("roletype").equals("ServiceProvider")){
+
+                    Intent passdata = new Intent(getApplicationContext(),ProfileInformation.class);
+                    passdata.putExtra("username", getIntent().getStringExtra("username"));
+                    startActivity(passdata);
+
                 }else{
                     Toast.makeText(Home.this,"Will be implemented later", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 

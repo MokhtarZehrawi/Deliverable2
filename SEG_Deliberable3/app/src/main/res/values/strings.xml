@@ -1,0 +1,20 @@
+ <resources>
+    <string name="app_name">SEG_Deliberable1</string>
+    <string name="title_activity_admin_add_service">AdminAddService</string>
+    <string name="title_activity_porfile_information">PorfileInformation</string>
+
+     <string name="licensed">Licensed</string>
+
+    <string-array name="streetType">
+        <item>Type</item>
+        <item>St.</item>
+        <item>Rd.</item>
+        <item>Dr.</item>
+        <item>Cres.</item>
+        <item>Ave.</item>
+        <item>Ln.</item>
+        <item>Pkwy.</item>
+        <item>Blvd.</item>
+        <item>Ct.</item>
+    </string-array>
+</resources>
