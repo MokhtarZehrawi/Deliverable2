@@ -1,4 +1,4 @@
-package com.uottawa.runnan.seg_deliberable1;
+package com.uottawa.runnan.seg_deliberable1.Model;
 
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import com.uottawa.runnan.seg_deliberable1.Model.Service;
+import com.uottawa.runnan.seg_deliberable1.R;
 
 public class ServiceListAdapter extends ArrayAdapter<Service> {
 

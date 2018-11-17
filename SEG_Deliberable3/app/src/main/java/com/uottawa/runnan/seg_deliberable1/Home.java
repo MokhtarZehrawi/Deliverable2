@@ -42,7 +42,7 @@ public class Home extends AppCompatActivity {
 
                 }else if(getIntent().getStringExtra("roletype").equals("ServiceProvider")){
 
-                    Intent passdata = new Intent(getApplicationContext(),ProfileInformation.class);
+                    Intent passdata = new Intent(getApplicationContext(),ProfileInformationActivity.class);
                     passdata.putExtra("username", getIntent().getStringExtra("username"));
                     startActivity(passdata);
 
