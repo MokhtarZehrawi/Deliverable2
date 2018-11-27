@@ -1,7 +1,8 @@
 package com.uottawa.runnan.seg_deliberable1.Model;
 
 public class Availability {
-    public Availability(String dates, String time, String name) {
+    public Availability(String id,String dates, String time, String name) {
+        this.id = id;
         this.dates = dates;
         this.time = time;
         this.name = name;
@@ -30,6 +31,17 @@ public class Availability {
 
     String dates;
     String time;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    String id;
+
 
     public String getName() {
         return name;
