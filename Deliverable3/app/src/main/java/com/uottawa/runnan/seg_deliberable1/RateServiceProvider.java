@@ -92,12 +92,12 @@ public class RateServiceProvider extends AppCompatActivity {
 
                 if(rating_num>5 || rating_num<0){
 
-                    Toast.makeText(RateServiceProvider.this,"rate 0 to 5",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RateServiceProvider.this,"Rate 0 to 5",Toast.LENGTH_LONG).show();
 
                 }else{
                     Rating temp = new Rating(rating_num, the_comment);
                     databaseRates.child(name).setValue(temp);
-                    Toast.makeText(RateServiceProvider.this,"thank you for rating",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RateServiceProvider.this,"Thank you for rating",Toast.LENGTH_LONG).show();
 
                 }
             }
