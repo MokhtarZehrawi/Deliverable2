@@ -31,6 +31,7 @@ public class MyService extends AppCompatActivity {
     List<Product> products;
     //Button checkmytime;
 
+
     @Override
     protected void  onStart() {
         super.onStart();
@@ -58,10 +59,7 @@ public class MyService extends AppCompatActivity {
         setContentView(R.layout.activity_my_service);
         final TextView service = (TextView)findViewById(R.id.etservices);
         TextView a = (TextView)findViewById(R.id.tvchooseservice);
-        final TextView b = (TextView)findViewById(R.id.tvspname);
-        Intent intent = getIntent();
-        String text = intent.getStringExtra(SP_profile.EXTRA_TEXT);
-        b.setText(text);
+        TextView b = (TextView)findViewById(R.id.tvspname);
         Button addservice = (Button)findViewById(R.id.btnaddservice);
         Button finishadding = (Button)findViewById(R.id.btnfinishadding);
      //   checkmytime = (Button)findViewById(R.id.btnchecktime);
@@ -99,7 +97,7 @@ public class MyService extends AppCompatActivity {
         addservice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Product newservice = new Product(service.getText().toString(), b.getText().toString());
+                final Product newservice = new Product(service.getText().toString());
                 databasenewSer.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

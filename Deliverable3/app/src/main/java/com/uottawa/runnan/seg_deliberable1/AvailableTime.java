@@ -34,7 +34,6 @@ public class AvailableTime extends AppCompatActivity implements AdapterView.OnIt
     TextView availabletime;
     Button addavailability;
     Button finishadding;
-    TextView serviceprovidername;
 
 
     @Override
@@ -46,18 +45,15 @@ public class AvailableTime extends AppCompatActivity implements AdapterView.OnIt
         Spinner spinnertime = findViewById(R.id.spinner2);
         addavailability = (Button)findViewById(R.id.add);
         finishadding=(Button)findViewById(R.id.finishadding);
-        serviceprovidername = (TextView)findViewById(R.id.serviceprovidername);
-        Intent intent = getIntent();
-        String text = intent.getStringExtra(SP_profile.EXTRA_TEXT2);
-        serviceprovidername.setText(text);
 
         dR = FirebaseDatabase.getInstance().getReference("availability");
 
         addavailability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = dR.push().getKey();
-                final Availability sp =new Availability(id,availabledate.getText().toString(),availabletime.getText().toString(),serviceprovidername.getText().toString());
+                Bundle extras = getIntent().getExtras();
+                final String spname = getIntent().getStringExtra("username");
+                final Availability sp =new Availability(availabledate.getText().toString(),availabletime.getText().toString(),spname);
                 final String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
                 dR.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -69,7 +65,7 @@ public class AvailableTime extends AppCompatActivity implements AdapterView.OnIt
                             Toast.makeText(AvailableTime.this,"Please enter a valid date with capial letters",Toast.LENGTH_LONG).show();
                         }
                         else{
-                            dR.child(sp.getId()).setValue(sp);
+                            dR.child(sp.getTime()).setValue(sp);
                             Toast.makeText(AvailableTime.this,"Availability added!",Toast.LENGTH_LONG).show();
                         }
                     }

@@ -55,18 +55,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvname"
+    <EditText
+        android:id="@+id/etname"
         android:layout_width="264dp"
         android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
+        android:hint="Please enter your name:"
         android:inputType="textPersonName"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +75,6 @@
 
     <EditText
         android:id="@+id/etaddress"
-        android:text="171 lees ave"
         android:layout_width="203dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -93,7 +93,6 @@
 
     <EditText
         android:id="@+id/etphonenumber"
-        android:text="6138907656"
         android:layout_width="254dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -147,7 +146,6 @@
 
     <EditText
         android:id="@+id/etcompany"
-        android:text="IBM"
         android:layout_width="260dp"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"

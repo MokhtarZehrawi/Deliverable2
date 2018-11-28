@@ -20,17 +20,18 @@
         <activity android:name=".Login" />
         <activity android:name=".ServiceList" />
         <activity android:name=".Home" />
-        <activity android:name=".ServiceProvider"
-            android:parentActivityName=".Home"/>
+        <activity android:name=".ServiceProvider" />
+        <activity android:name="com.uottawa.runnan.deliverable1.addService_dialog" />
         <activity android:name=".SP_profile" />
-        <activity android:name=".AvailableTime"
-            android:parentActivityName=".SP_profile"/>
+        <activity android:name="com.uottawa.runnan.deliverable1.timeavailability" />
+        <activity android:name="com.uottawa.runnan.deliverable1.addAvailability" />
+        <activity android:name="com.uottawa.runnan.deliverable1.enterDateandTime" />
+        <activity android:name=".AvailableTime" />
         <activity android:name=".AvailabilityList" />
-        <activity android:name=".MyProfile"
-            android:parentActivityName=".SP_profile"/>
+        <activity android:name=".MyProfile" />
         <activity android:name=".MyServiceList" />
-        <activity android:name=".MyService"
-            android:parentActivityName=".SP_profile"></activity>
+        <activity android:name=".MyService" />
+        <activity android:name=".HomeOwnerMain"></activity>
     </application>
 
 </manifest>

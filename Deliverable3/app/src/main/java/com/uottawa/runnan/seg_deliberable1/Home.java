@@ -16,7 +16,6 @@ public class Home extends AppCompatActivity {
     EditText view;
     EditText view2;
     Button next;
-    public static final String EXTRA_TEXT = "spname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class Home extends AppCompatActivity {
 
         view = (EditText) findViewById(R.id.welcome);
         view2 = (EditText)findViewById(R.id.etrole);
-        view.setText(username);
+        view.setText("Welcome " + username + "!");
         view2.setText("You are logged as " + role);
         next =(Button)findViewById(R.id.btnnext);
         next.setOnClickListener(new View.OnClickListener() {
@@ -43,19 +42,16 @@ public class Home extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else if(role2.equals("ServiceProvider")){
-                    openSPProfile();
+                    Intent intent = new Intent(getApplicationContext(),SP_profile.class);
+                    startActivity(intent);
                 }
                 else{
-                    Toast.makeText(Home.this,"Will be implemented in deliverable 4", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),HomeOwnerMain.class);
+                    intent.putExtra("username", getIntent().getStringExtra("username"));
+                    intent.putExtra("roletype", getIntent().getStringExtra("roletype"));
+                    startActivity(intent);
                 }
             }
         });
-    }
-
-    public void openSPProfile(){
-        String spname = view.getText().toString();
-        Intent intent = new Intent(getApplicationContext(),SP_profile.class);
-        intent.putExtra(EXTRA_TEXT,spname);
-        startActivity(intent);
     }
 }
