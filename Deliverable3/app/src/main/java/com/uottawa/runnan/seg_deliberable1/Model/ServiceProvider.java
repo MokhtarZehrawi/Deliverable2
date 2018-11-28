@@ -4,6 +4,10 @@ public class ServiceProvider{
 
     private String _address;
 
+    public ServiceProvider() {
+
+    }
+
     public ServiceProvider(String _username, String _address, String _phoneNumber, String _generalInfo, String _company) {
         this._address = _address;
         this._phoneNumber = _phoneNumber;

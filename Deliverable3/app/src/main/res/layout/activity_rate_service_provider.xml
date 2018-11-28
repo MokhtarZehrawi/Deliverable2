@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.uottawa.runnan.seg_deliberable1.RateServiceProvider">
+
+
+    <EditText
+        android:id="@+id/et_comments"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_marginTop="64dp"
+        android:gravity="top|left"
+        android:hint="comments"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_rate"
+        android:layout_width="55dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="93dp"
+
+        android:layout_marginLeft="93dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="23dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Rate:"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/et_comments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_rating"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="79dp"
+        android:layout_marginLeft="79dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginRight="137dp"
+        android:hint="1-5"
+        android:gravity="center_horizontal"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_rate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_sp_name11"
+        android:layout_width="231dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginRight="78dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Name"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/lv_service_provider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_rate_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="139dp"
+        android:layout_marginLeft="139dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginRight="157dp"
+        android:layout_marginBottom="8dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/tv_display"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_comments" />
+
+
+    <ListView
+        android:id="@+id/lv_service_provider"
+        android:layout_width="wrap_content"
+        android:layout_height="267dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></ListView>
+
+
+</android.support.constraint.ConstraintLayout>
