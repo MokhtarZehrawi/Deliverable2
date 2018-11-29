@@ -21,7 +21,6 @@ public class RateServiceProviderList extends ArrayAdapter<ServiceProvider> {
         super(context, R.layout.layout_product_list, providers);
         this.context = context;
         this.providers = providers;
-
     }
 
     @Override
