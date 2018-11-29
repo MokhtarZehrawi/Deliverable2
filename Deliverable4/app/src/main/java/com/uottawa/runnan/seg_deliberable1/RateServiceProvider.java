@@ -27,8 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RateServiceProvider extends AppCompatActivity {
-    DatabaseReference databaseRates;
+    DatabaseReference databaseRating;
     DatabaseReference databaseProfiles;
+    DatabaseReference databaseRate;
     ListView listviewratings;
     List<ServiceProvider> providers;
     Button submit;
@@ -52,8 +53,10 @@ public class RateServiceProvider extends AppCompatActivity {
         comments = (EditText)findViewById(R.id.et_comments);
         rating = (EditText)findViewById(R.id.et_rating);
 
-        databaseRates = FirebaseDatabase.getInstance().getReference("rating");
+        databaseRating = FirebaseDatabase.getInstance().getReference("rating");
         databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
+        databaseRate = FirebaseDatabase.getInstance().getReference("rate");
+
         providers = new ArrayList<>();
 
         databaseProfiles.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -73,7 +76,7 @@ public class RateServiceProvider extends AppCompatActivity {
             }
         });
 
-        databaseRates.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseRating.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
@@ -89,7 +92,7 @@ public class RateServiceProvider extends AppCompatActivity {
                     }
                     if(found==false){
                         Rating rating = new Rating(provName, 0);
-                        databaseRates.child(provName).setValue(rating);
+                        databaseRating.child(provName).setValue(rating);
 
                     }
                 }
@@ -127,8 +130,10 @@ public class RateServiceProvider extends AppCompatActivity {
 
 
                 }else{
-                    Rate newRate = new Rate(rating_num, the_comment);
-                    addRateToFirebase(newRate, name);
+                    String id = databaseRate.push().getKey();
+                    Rate newRate = new Rate(id, name, rating_num, the_comment);
+                    addRateToFirebase(newRate);
+                    Toast.makeText(RateServiceProvider.this,"thank you for rating",Toast.LENGTH_LONG).show();
 
 
                 }
@@ -138,31 +143,18 @@ public class RateServiceProvider extends AppCompatActivity {
 
 
     }
-    private void addRateToFirebase(Rate rate, String name) {
+    private void addRateToFirebase(Rate rate) {
 
-        final String provName = name;
         final Rate ProvRate = rate;
-        final int ProvRating = rate.getRating();
+        final String provName = rate.getSpName();
 
-
-        databaseRates.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseRate.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot child : dataSnapshot.getChildren()){
+                databaseRate.child(ProvRate.getId()).setValue(ProvRate);
+                calculateProviderRating(provName);
 
-                    if(child.getKey().equals(provName)){
-
-
-                        Rating rating = child.getValue(Rating.class); //<-----------------------this line is the problem
-                        Rating newRating = new Rating(rating);
-                        newRating.addRating(ProvRate);
-                        databaseRates.child(provName).setValue(newRating);
-                        Toast.makeText(RateServiceProvider.this,"thank you for rating",Toast.LENGTH_LONG).show();
-
-                    }
-
-                }
             }
 
             @Override
@@ -173,5 +165,73 @@ public class RateServiceProvider extends AppCompatActivity {
 
 
     }
+
+    private void calculateProviderRating(String name){
+
+        final String provName = name;
+
+        databaseRate.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                double totalRate = 0;
+                int count = 0;
+
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+
+                    Rate rate = child.getValue(Rate.class);
+
+                    if(rate.getSpName().equals(provName)){
+                        totalRate = totalRate + rate.getRating();
+                        count++;
+                    }
+                }
+                double avgRate =Math.round( ((double)totalRate)/count *10)/10.0 ;
+                updateProviderRating(avgRate, provName);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void updateProviderRating(double avg, final String name){
+
+        final double avgRate = avg;
+        final String provName = name;
+
+        databaseRating.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot child: dataSnapshot.getChildren()){
+
+                    Rating rating = child.getValue(Rating.class);
+
+                    if(rating.getName().equals(provName)){
+
+                        rating.setAvgRating(avgRate);
+                        databaseRating.child(provName).setValue(rating);
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
 
 }
