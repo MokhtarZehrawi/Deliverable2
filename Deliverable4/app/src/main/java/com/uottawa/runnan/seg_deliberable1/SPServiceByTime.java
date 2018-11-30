@@ -80,8 +80,8 @@ public class SPServiceByTime extends AppCompatActivity {
         hoName = (TextView)findViewById(R.id.tvhoname);
         spName = (TextView)findViewById(R.id.tvselectedsp);
         Intent intent = getIntent();
-        String text = intent.getStringExtra(ByTime.EXTRA_TEXT1);
-        String text1 = intent.getStringExtra(ByTime.EXTRA_TEXT);
+        String text = intent.getStringExtra(AvailableSPnames.EXTRA_TEXT1);
+        String text1 = intent.getStringExtra(AvailableSPnames.EXTRA_TEXT);
         hoName.setText(text);
         spName.setText(text1);
 

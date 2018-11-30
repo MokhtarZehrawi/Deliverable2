@@ -12,7 +12,6 @@ import org.w3c.dom.Text;
 public class SearchSP extends AppCompatActivity {
     public static final String EXTRA_TEXT = "homeownernameToByTime";
     public static final String EXTRA_TEXT1 = "homeownernameToByServices";
-    public static final String EXTRA_TEXT2 = "homeownernametoByRate";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +48,13 @@ public class SearchSP extends AppCompatActivity {
             }
         });
 
- /*       byRate.setOnClickListener(new View.OnClickListener() {
+        byRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = hoName.getText().toString();
                 Intent intent = new Intent(getApplicationContext(),ByRate.class);
-                intent.putExtra(EXTRA_TEXT2,name);
                 startActivity(intent);
             }
-        });*/
+        });
 
     }
 }

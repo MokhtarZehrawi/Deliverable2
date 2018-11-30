@@ -44,11 +44,18 @@
         <activity android:name=".ByService" />
         <activity android:name=".SPnameByService" />
         <activity android:name=".SPNameList" />
-        <activity android:name=".RateServiceProvider"
-            android:parentActivityName=".Homeowner"/>
-        <activity android:name=".RateServiceProviderList">
-
-        </activity>
+        <activity
+            android:name=".RateServiceProvider"
+            android:parentActivityName=".Homeowner" />
+        <activity android:name=".RateServiceProviderList" />
+        <activity android:name=".AvailableSPnames" />
+        <activity android:name=".ByRate" />
+        <activity android:name=".SPnameByRate" />
+        <activity
+            android:name=".AverageRateNameList"
+            android:label="@string/title_activity_average_rate_name_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".aveRateNameList"></activity>
     </application>
 
 </manifest>

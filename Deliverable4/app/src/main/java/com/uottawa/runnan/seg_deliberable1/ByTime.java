@@ -29,16 +29,22 @@ import java.util.List;
 
 public class ByTime extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public static final String EXTRA_TEXT = "selectedspnamebytime";
-    public static final String EXTRA_TEXT1 = "selectspbytime";
+    //  public static final String EXTRA_TEXT = "selectedspnamebytime";
+    //  public static final String EXTRA_TEXT1 = "selectspbytime";
+
+
+    public static final String EXTRA_TEXT2 = "selectedday";
+    public static final String EXTRA_TEXT3 = "selectedtime";
+    public static final String EXTRA_TEXT4 = "honAmE";
+
     TextView selectedtime;
     EditText day;
 
-    DatabaseReference availability;
-    ListView listofspname;
-    List<Availability> serviceprovidernames;
+    //  DatabaseReference availability;
+    //   ListView listofspname;
+    //   List<Availability> serviceprovidernames;
 
-    DatabaseReference bookedServices;
+    Button lookforsp;
 
 
     @Override
@@ -56,16 +62,38 @@ public class ByTime extends AppCompatActivity implements AdapterView.OnItemSelec
         time.setAdapter(adapter);
         time.setOnItemSelectedListener(this);
 
-        availability = FirebaseDatabase.getInstance().getReference("availability");
-        serviceprovidernames = new ArrayList<>();
-        listofspname = (ListView)findViewById(R.id.spnamelist);
+        lookforsp = (Button)findViewById(R.id.btnlookforsp);
+        lookforsp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(day.getText().toString().isEmpty()){
+                    Toast.makeText(ByTime.this, "Please enter a day", Toast.LENGTH_SHORT).show();
+                }
+                else if(selectedtime.getText().toString().isEmpty()){
+                    Toast.makeText(ByTime.this, "Please select a time", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    String selectedday = day.getText().toString();
+                    String selectedTime = selectedtime.getText().toString();
+                    String honamE = hoName.getText().toString();
 
-        bookedServices = FirebaseDatabase.getInstance().getReference("bookedServices");
+                    Intent intent = new Intent(getApplicationContext(), AvailableSPnames.class);
+                    intent.putExtra(EXTRA_TEXT2,selectedday);
+                    intent.putExtra(EXTRA_TEXT3, selectedTime);
+                    intent.putExtra(EXTRA_TEXT4,honamE);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        // availability = FirebaseDatabase.getInstance().getReference("availability");
+        // serviceprovidernames = new ArrayList<>();
+        // listofspname = (ListView)findViewById(R.id.spnamelist);
 
         day = (EditText)findViewById(R.id.day);
         selectedtime = (TextView)findViewById(R.id.time);
 
-        listofspname.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      /*  listofspname.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Availability a = serviceprovidernames.get(position);
@@ -76,23 +104,11 @@ public class ByTime extends AppCompatActivity implements AdapterView.OnItemSelec
                 intent.putExtra(EXTRA_TEXT1, honamebytime);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 
-    private void showReserveDialog(final String nameOfsp){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.activity_book_service,null);
-        dialogBuilder.setView(dialogView);
-
-        final Button reserve = (Button)findViewById(R.id.btnbook);
-
-        final AlertDialog b = dialogBuilder.create();
-        b.show();
-
-    }
-    @Override
+  /*  @Override
     protected void onStart(){
         super.onStart();
         availability.addValueEventListener(new ValueEventListener() {
@@ -112,7 +128,7 @@ public class ByTime extends AppCompatActivity implements AdapterView.OnItemSelec
 
             }
         });
-    }
+    }*/
 
 
     @Override
